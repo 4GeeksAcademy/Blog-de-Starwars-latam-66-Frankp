@@ -1,22 +1,22 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import './index.css'  // Global styles for your application
-import { RouterProvider } from "react-router-dom";  // Import RouterProvider to use the router
-import { router } from "./routes";  // Import the router configuration
-import { StoreProvider } from './hooks/useGlobalReducer';  // Import the StoreProvider for global state management
+import './index.css'  // Estilos globales de tu aplicación
+import { StoreProvider } from './hooks/useGlobalReducer';  // Proveedor del estado global
+
+// 🚀 CAMBIO CLAVE: Importamos el componente por defecto (el Layout que configuramos antes)
+import Layout from "./routes";  
 
 const Main = () => {
     return (
         <React.StrictMode>  
-            {/* Provide global state to all components */}
+            {/* Proveedor global de Flux/Reducer */}
             <StoreProvider> 
-                {/* Set up routing for the application */} 
-                <RouterProvider router={router}>
-                </RouterProvider>
+                {/* 🚀 Renderizamos directamente tu componente Layout que ya tiene el BrowserRouter dentro */}
+                <Layout />
             </StoreProvider>
         </React.StrictMode>
     );
 }
 
-// Render the Main component into the root DOM element.
+// Renderizamos el componente Main en el elemento raíz del DOM.
 ReactDOM.createRoot(document.getElementById('root')).render(<Main />)
